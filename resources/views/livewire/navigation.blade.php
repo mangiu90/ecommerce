@@ -1,4 +1,4 @@
-<header class="bg-trueGray-700 sticky top-0" x-data="dropdown()">
+<header class="bg-trueGray-700 sticky top-0 z-50" x-data="dropdown()">
     <div class="container flex items-center h-16 justify-between md:justify-start">
         <a x-on:click="show()" :class="{ 'bg-opacity-100 text-orange-500': open }" class="flex flex-col items-center justify-center order-last md:order-first px-6 md:px-4 bg-white bg-opacity-25 text-white cursor-pointer font-semibold h-full">
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">

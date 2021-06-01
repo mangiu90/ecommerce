@@ -34,8 +34,13 @@ class Product extends Model
         return $this->hasMany(Size::class);
     }
 
-    public function image()
+    public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function scopePublicado($query)
+    {
+        return $query->where('status', self::PUBLICADO);
     }
 }

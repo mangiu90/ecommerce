@@ -2,8 +2,12 @@
     "E-Mail Address": "Correo electrónico",
     "Password": "Contraseña",
     "Remember Me": "Recuérdame",
+    "Remember me": "Recuérdame",
     "Login": "Acceder",
+    "Log in": "Acceder",
     "Forgot Your Password?": "¿Olvidaste tu contraseña?",
+    "Forgot your password?": "¿Olvidaste tu contraseña?",
+    "Already registered?": "¿Ya está registrado?",
     "Register": "Registro",
     "Name": "Nombre",
     "Confirm Password": "Confirmar contraseña",
@@ -29,5 +33,9 @@
     "Before proceeding, please check your email for a verification link.": "Antes de poder continuar, por favor, confirma tu correo electrónico con el enlace que te hemos enviado.",
     "If you did not receive the email": "Si no has recibido el email",
     "click here to request another": "pulsa aquí para que te enviemos otro",
-    "All rights reserved.":  "Todos los derechos reservados."
+    "All rights reserved.":  "Todos los derechos reservados.",
+    "white": "blanco",
+    "red": "rojo",
+    "blue": "azul",
+    "black": "negro"
 }

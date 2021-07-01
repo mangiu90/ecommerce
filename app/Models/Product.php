@@ -26,7 +26,7 @@ class Product extends Model
 
     public function colors()
     {
-        return $this->belongsToMany(Color::class);
+        return $this->belongsToMany(Color::class)->withPivot('quantity');
     }
 
     public function sizes()
@@ -42,5 +42,10 @@ class Product extends Model
     public function scopePublicado($query)
     {
         return $query->where('status', self::PUBLICADO);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

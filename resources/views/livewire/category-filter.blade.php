@@ -49,7 +49,7 @@
 
                                 <div class="px-6 py-4">
                                     <h1 class="text-lg font-semibold">
-                                        <a href="">
+                                        <a href="{{ route('products.show', $product) }}">
                                             {{ Str::limit($product->name, 20) }}
                                         </a>
                                     </h1>
@@ -98,9 +98,9 @@
                                     </div>
 
                                     <div class="mt-auto mb-6">
-                                        <x-jet-danger-button>
+                                        <x-danger-enlace href="{{ route('products.show', $product) }}">
                                             Más información
-                                        </x-jet-danger-button>
+                                        </x-danger-enlace>
                                     </div>
                                 </div>
                             </article>

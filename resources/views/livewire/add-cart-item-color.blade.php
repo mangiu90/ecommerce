@@ -4,9 +4,18 @@
     <select wire:model="color_id" class="form-control w-full">
         <option value="" selected disabled>Selecciona un color</option>
         @foreach ($colors as $color)
-            <option value="{{ $color->id }}">{{ $color->name }}</option>
+            <option value="{{ $color->id }}" class="capitalize">{{ __($color->name) }}</option>
         @endforeach
     </select>
+
+    <p class="text-gray-700 my-4">
+        <span class="font-semibold text-lg">Stock disponible: </span> 
+        @if ($quantity)
+            {{ $quantity }}
+        @else
+            {{ $product->stock }}
+        @endif
+    </p>
 
     <div class="flex mt-4">
         <div class="mr-4">
@@ -18,7 +27,7 @@
         </div>
 
         <div class="flex-1">
-            <x-button x-bind:disabled="!$wire.quantity" color="orange" class="w-full">
+            <x-button x-bind:disabled="$wire.qty > $wire.quantity" wire:loading.attr="disabled" wire:target="addItem" wire:click="addItem" x-bind:disabled="!$wire.quantity" color="orange" class="w-full">
                 Agregar a carrito de compras
             </x-button>
         </div>

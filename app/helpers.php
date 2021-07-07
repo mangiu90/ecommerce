@@ -29,7 +29,7 @@ function qty_added($product_id, $color_id = null, $size_id = null)
 
     if ($size_id) {
         $color = Color::find($color_id);
-        $size = Zize::find($size_id);
+        $size = Size::find($size_id);
         $item = $item->where('options.color', $color->name)->where('options.size', $size->name)->first();
     } elseif ($color_id) {
         $color = Color::find($color_id);

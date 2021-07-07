@@ -1,4 +1,44 @@
 <x-app-layout>
+
+    @php
+
+    // SDK de Mercado Pago
+    require base_path('/vendor/autoload.php');
+    // Agrega credenciales
+    MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
+
+    // Crea un objeto de preferencia
+    $preference = new MercadoPago\Preference();
+
+    $shipments = new MercadoPago\Shipments();
+
+    $shipments->cost = $order->shipping_cost;
+    $shipments->mode = 'not_specified';
+
+    $preference->shipments = $shipments;
+
+    // Crea un ítem en la preferencia
+    foreach ($items as $product) {
+        $item = new MercadoPago\Item();
+        $item->title = $product->name;
+        $item->quantity = $product->qty;
+        $item->unit_price = $product->price;
+
+        $products[] = $item;
+    }
+
+    $preference->back_urls = array(
+        "success" => route('orders.pay', $order),
+        "failure" => "http://www.tu-sitio/failure",
+        "pending" => "http://www.tu-sitio/pending"
+    );
+    $preference->auto_return = "approved";
+
+    $preference->items = $products;
+    $preference->save();
+
+    @endphp
+
     <div class="container py-8">
         <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6">
             <p class="text-gray-700 uppercase"><span class="font-semibold">Número de orden: </span>Orden-{{$order->id}}</p>
@@ -92,7 +132,32 @@
                 <p class="text-lg font-semibold uppercase">
                     Total: {{ $order->total }} USD
                 </p>
+
+                <div class="cho-container">
+
+                </div>
             </div>
         </div>
     </div>
+
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <script>
+        // Agrega credenciales de SDK
+          const mp = new MercadoPago("{{config('services.mercadopago.key')}}", {
+                locale: 'es-AR'
+          });
+        
+          // Inicializa el checkout
+          mp.checkout({
+              preference: {
+                  id: '{{ $preference->id }}'
+              },
+              render: {
+                    container: '.cho-container', // Indica dónde se mostrará el botón de pago
+                    label: 'Pagar', // Cambia el texto del botón de pago (opcional)
+              }
+        });
+    </script>
+
 </x-app-layout>

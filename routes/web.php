@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Livewire\CreateOrder;
@@ -30,4 +31,5 @@ Route::get('products/{product}', [ProductController::class, 'show'])->name('prod
 Route::get('shopping-cart', ShoppingCart::class)->name('shopping-cart');
 
 Route::get('orders/create', CreateOrder::class)->middleware('auth')->name('orders.create');
+Route::get('orders/{order}/payment', [OrderController::class, 'payment'])->middleware('auth')->name('orders.payment');
 

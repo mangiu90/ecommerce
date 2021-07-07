@@ -175,7 +175,7 @@
                         @if ($envio_type == 1)
                             {{ Cart::subtotal() }} USD
                         @else
-                            {{ Cart::subtotal() + $shipping_cost }} USD
+                            {{ str_replace(',', '', Cart::subtotal()) + $shipping_cost }} USD
                         @endif
                 </p>
             </div>

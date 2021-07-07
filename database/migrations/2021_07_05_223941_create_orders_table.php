@@ -21,11 +21,14 @@ class CreateOrdersTable extends Migration
             $table->float('shipping_cost');
             $table->float('total');
             $table->json('content');
-            $table->string('address');
+            $table->string('address')->nullable();
+            $table->string('references')->nullable();
+            $table->string('contact');
+            $table->string('phone');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->foreign('city_id')->references('id')->on('cities');
 
             $table->timestamps();

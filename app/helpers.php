@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Color;
 use App\Models\Product;
 use App\Models\Size;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -24,7 +25,18 @@ function qty_added($product_id, $color_id = null, $size_id = null)
 {
     $cart = Cart::content();
 
-    $item = $cart->where('id', $product_id)->where('options.color_id', $color_id)->where('options.size_id', $size_id)->first();
+    $item = $cart->where('id', $product_id);
+
+    if ($size_id) {
+        $color = Color::find($color_id);
+        $size = Zize::find($size_id);
+        $item = $item->where('options.color', $color->name)->where('options.size', $size->name)->first();
+    } elseif ($color_id) {
+        $color = Color::find($color_id);
+        $item = $item->where('options.color', $color->name)->first();
+    } else {
+        $item = $item->first();
+    }
 
     if ($item) {
         return $item->qty;

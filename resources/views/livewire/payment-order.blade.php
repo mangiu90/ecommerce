@@ -133,7 +133,7 @@
         <div class="order-1 lg:order-2 xl:col-span-2">
             <div class="bg-white rounded-lg shadow-lg px-6 pt-6">
                 <div class="flex justify-between items-center mb-4">
-                    <img class="h-8" src="{{ asset('img/MC_VI_DI_2-1.jpg') }}" alt="">
+                    <img class="h-8" src="{{ asset('img/tarjetas.png') }}" alt="">
                     <div class="text-gray-700">
                         <p class="text-sm font-semibold">
                             Subtotal: {{ $order->total - $order->shipping_cost }} USD

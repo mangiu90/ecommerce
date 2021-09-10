@@ -1,5 +1,4 @@
 <div>
-
     <header class="bg-white shadow">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center">
@@ -19,8 +18,7 @@
         <h1 class="text-3xl text-center font-semibold mb-8">Complete esta información para crear un producto</h1>
 
         <div class="mb-4" wire:ignore>
-            {{-- <form action="{{ route('admin.products.files', $product) }}" method="POST" class="dropzone"
-                id="my-awesome-dropzone"></form> --}}
+            <form action="{{ route('admin.products.files', $product) }}" method="POST" class="dropzone" id="my-awesome-dropzone"></form>
         </div>
 
         @if ($product->images->count())
@@ -47,12 +45,7 @@
 
         @endif
 
-
-        {{-- @livewire('admin.status-product', ['product' => $product], key('status-product-' . $product->id)) --}}
-
-        <div class="bg-white shadow-xl rounded-lg p-6">
-
-        </div>
+        @livewire('admin.status-product', ['product' => $product], key('status-product-' . $product->id))
 
         <div class="bg-white shadow-xl rounded-lg p-6">
             <div class="grid grid-cols-2 gap-6 mb-4">
@@ -145,22 +138,16 @@
 
 
             @if ($this->subcategory)
-
-
                 @if (!$this->subcategory->color && !$this->subcategory->size)
-
                     <div>
                         <x-jet-label value="Cantidad" />
                         <x-jet-input wire:model="product.quantity" type="number" class="w-full" />
                         <x-jet-input-error for="product.quantity" />
                     </div>
-
                 @endif
-
             @endif
 
             <div class="flex justify-end items-center mt-4">
-
                 <x-jet-action-message class="mr-3" on="saved">
                     Actualizado
                 </x-jet-action-message>
@@ -171,22 +158,13 @@
             </div>
         </div>
 
-
         @if ($this->subcategory)
-
             @if ($this->subcategory->size)
-
                 @livewire('admin.size-product', ['product' => $product], key('size-product-' . $product->id))
-
             @elseif($this->subcategory->color)
-
                 @livewire('admin.color-product', ['product' => $product], key('color-product-' . $product->id))
-
             @endif
-
         @endif
-
-
     </div>
 
 
@@ -207,7 +185,6 @@
                     Livewire.emit('refreshProduct');
                 }
             };
-
 
             Livewire.on('deleteProduct', () => {
 
@@ -232,7 +209,7 @@
                     }
                 })
 
-            })
+            });
 
             Livewire.on('deleteSize', sizeId => {
 
@@ -257,7 +234,7 @@
                     }
                 })
 
-            })
+            });
 
             Livewire.on('deletePivot', pivot => {
                 Swal.fire({
@@ -280,7 +257,7 @@
                         )
                     }
                 })
-            })
+            });
 
             Livewire.on('deleteColorSize', pivot => {
                 Swal.fire({
@@ -303,9 +280,8 @@
                         )
                     }
                 })
-            })
+            });
         </script>
     @endpush
-
 </div>
 
